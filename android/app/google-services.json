@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "217075930881",
+    "project_id": "duber-bd997",
+    "storage_bucket": "duber-bd997.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217075930881:android:456cdf7364f8ae3790ad00",
+        "android_client_info": {
+          "package_name": "com.raunak.rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217075930881-hpq27q5p9ld2lgt1ldr93uee8ps94t72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw8j4k54M40hZr7cpRCJ1VsW_tDxZCMRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217075930881-hpq27q5p9ld2lgt1ldr93uee8ps94t72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
