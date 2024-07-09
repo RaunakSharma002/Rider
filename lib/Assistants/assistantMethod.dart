@@ -38,9 +38,9 @@ class AssistantMethods{
   static Future<DirectionDetails> obtainPlaceDirectionDetails(LatLng initialPosition, LatLng finalPosition) async{
     String directonUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=${initialPosition.latitude},${initialPosition.longitude}&destination=${finalPosition.latitude},${finalPosition.longitude}&key=$mapKey";
     var res = await RequestAssistant.getRequest(directonUrl);
-    if(res == "failed"){
-      return null;
-    }
+    // if(res == "failed"){
+    //   return null;
+    // }
     print("Multiples routes,${res}");
 
     DirectionDetails directionDetails = DirectionDetails();
@@ -53,26 +53,26 @@ class AssistantMethods{
     return directionDetails;
   }
 
-  static int calculateFares(DirectionDetails directionDetails) {
-    //interm of USD
-    double timeTravelFare = (directionDetails.durationValue / 60) * 0.20;
-    double distanceTravelFare = (directionDetails.distanceValue / 1000) * 0.02;
-    double totalAmountFare = timeTravelFare + distanceTravelFare;
-    //$1 = ₹82.17
-    double totalLocalAmount = totalAmountFare * 8.17;
-    return totalLocalAmount.truncate();
-  }
+  // static int calculateFares(DirectionDetails directionDetails) {
+  //   //interm of USD
+  //   double timeTravelFare = (directionDetails.durationValue / 60) * 0.20;
+  //   double distanceTravelFare = (directionDetails.distanceValue / 1000) * 0.02;
+  //   double totalAmountFare = timeTravelFare + distanceTravelFare;
+  //   //$1 = ₹82.17
+  //   double totalLocalAmount = totalAmountFare * 8.17;
+  //   return totalLocalAmount.truncate();
+  // }
 
-  static void getCurrentOnlineUserInfo() async{
-    firebaseUser = await FirebaseAuth.instance.currentUser;
-    String userId = firebaseUser.uid;
-    DatabaseReference reference = FirebaseDatabase.instance.reference().child("users").child(userId);
-    
-    reference.once().then((DataSnapshot dataSnapShot){
-      if(dataSnapShot.value != null){
-        userCurrentInfo = Users.fromSnapshot(dataSnapShot);
-      }
-    });
-  }
+  // static void getCurrentOnlineUserInfo() async{
+  //   firebaseUser = await FirebaseAuth.instance.currentUser;
+  //   String userId = firebaseUser.uid;
+  //   DatabaseReference reference = FirebaseDatabase.instance.reference().child("users").child(userId);
+  //
+  //   reference.once().then((DataSnapshot dataSnapShot){
+  //     if(dataSnapShot.value != null){
+  //       userCurrentInfo = Users.fromSnapshot(dataSnapShot);
+  //     }
+  //   });
+  // }
 
 }

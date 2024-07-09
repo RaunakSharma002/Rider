@@ -30,12 +30,13 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.deepPurple,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: FirebaseAuth.instance.currentUser == null ? LoginSceen.idScreen : MainScreen.idScreen,
-        routes: {
-          RegistrationSceen.idScreen: (context) => RegistrationSceen(),
-          LoginSceen.idScreen: (context) => LoginSceen(),
-          MainScreen.idScreen: (context) => MainScreen(),
-        },
+        // initialRoute: FirebaseAuth.instance.currentUser == null ? LoginSceen.idScreen : MainScreen.idScreen,
+        // routes: {
+        //   RegistrationSceen.idScreen: (context) => RegistrationSceen(),
+        //   LoginSceen.idScreen: (context) => LoginSceen(),
+        //   MainScreen.idScreen: (context) => MainScreen(),
+        // },
+        initialRoute: MainScreen.idScreen,
         debugShowCheckedModeBanner: false,
       ),
     );

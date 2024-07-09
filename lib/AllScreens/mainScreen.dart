@@ -28,10 +28,10 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   Completer<GoogleMapController> _controllerGoogleMap = Completer();
-  GoogleMapController newGoogleMapController;
+  GoogleMapController? newGoogleMapController;
 
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  DirectionDetails tripDirectionDetails;
+  DirectionDetails? tripDirectionDetails;
 
   List<LatLng> pLineCoordinates = [];
   Set<Polyline> polyLineSet = {};
@@ -44,42 +44,42 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   double requestRideContainerHeight = 0;
   double searchContainerHeight = 260.0;
 
-  DatabaseReference rideRequestRef;
+  DatabaseReference? rideRequestRef;
 
   @override
   void initState(){
     super.initState();
-    AssistantMethods.getCurrentOnlineUserInfo();
+    // AssistantMethods.getCurrentOnlineUserInfo();
   }
 
-  void saveRideRequest(){
-    rideRequestRef = FirebaseDatabase.instance.reference().child("Ride Request").push();
-    var pickUp = Provider.of<AppData>(context, listen: false).pickUpLocation;
-    var dropOff = Provider.of<AppData>(context, listen: false).dropOffLocation;
-    Map pickUpLocMap = {
-      "latitude": pickUp.latitude.toString(),
-      "longitude": pickUp.longitude.toString(),
-    };
-    Map dropOffLocMap = {
-      "latitude": dropOff.latitude.toString(),
-      "longitude": dropOff.longitude.toString(),
-    };
-    Map rideInfoMap = {
-      "driver_id": "waiting",
-      "payment_method": "cash",
-      "pickup": pickUpLocMap,
-      "dropoff": dropOffLocMap,
-      "created_at": DateTime.now().toString(),
-      "rider_name": userCurrentInfo.name,
-      "rider_phone": userCurrentInfo.phone,
-      "pickup_address": pickUp.placeName,
-      "dropoff_address": dropOff.placeName,
-    };
-    rideRequestRef.set(rideInfoMap);
-  }
+  // void saveRideRequest(){
+  //   rideRequestRef = FirebaseDatabase.instance.reference().child("Ride Request").push();
+  //   var pickUp = Provider.of<AppData>(context, listen: false).pickUpLocation;
+  //   var dropOff = Provider.of<AppData>(context, listen: false).dropOffLocation;
+  //   Map pickUpLocMap = {
+  //     "latitude": pickUp!.latitude.toString(),
+  //     "longitude": pickUp!.longitude.toString(),
+  //   };
+  //   Map dropOffLocMap = {
+  //     "latitude": dropOff!.latitude.toString(),
+  //     "longitude": dropOff!.longitude.toString(),
+  //   };
+  //   Map rideInfoMap = {
+  //     "driver_id": "waiting",
+  //     "payment_method": "cash",
+  //     "pickup": pickUpLocMap,
+  //     "dropoff": dropOffLocMap,
+  //     "created_at": DateTime.now().toString(),
+  //     "rider_name": userCurrentInfo!.name,
+  //     "rider_phone": userCurrentInfo!.phone,
+  //     "pickup_address": pickUp.placeName,
+  //     "dropoff_address": dropOff.placeName,
+  //   };
+  //   rideRequestRef!.set(rideInfoMap);
+  // }
 
   void cancelRideRequest(){
-    rideRequestRef.remove();
+    rideRequestRef!.remove();
   }
 
   displayRequestRideContainer(){
@@ -89,7 +89,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       bottomPaddingofMap = 150.0;
       drawerOpen = true;
     });
-    saveRideRequest();
+    // saveRideRequest();
   }
 
   resetApp(){
@@ -117,7 +117,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     });
   }
 
-  Position currentPosition;
+  Position? currentPosition;
   var geoLocator = Geolocator();
   double bottomPaddingofMap = 0;
   void locatePosition() async{
@@ -125,7 +125,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     currentPosition = position;
     LatLng latLatPosition = LatLng(position.latitude, position.longitude);
     CameraPosition cameraPosition = new CameraPosition(target: latLatPosition, zoom: 14);
-    newGoogleMapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+    newGoogleMapController!.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
     String address = await AssistantMethods.searchCoordinateAddress(position, context);
     print("This is your address:: " + address);
   }
@@ -186,7 +186,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             GestureDetector(
               onTap: (){
                 FirebaseAuth.instance.signOut();
-                Navigator.pushNamedAndRemoveUntil(context, LoginSceen.idScreen, (route) => false);
+                // Navigator.pushNamedAndRemoveUntil(context, LoginSceen.idScreen, (route) => false);
               },
               child: ListTile(
                 leading: Icon(Icons.info),
@@ -227,7 +227,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             child: GestureDetector(
               onTap: (){
                 if(drawerOpen){
-                  scaffoldKey.currentState.openDrawer();
+                  scaffoldKey.currentState!.openDrawer();
                 }else{
                   resetApp();
                 }
@@ -329,7 +329,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                             children: [
                               Text(
                                 Provider.of<AppData>(context).pickUpLocation != null ?
-                                  Provider.of<AppData>(context).pickUpLocation.placeName :
+                                  Provider.of<AppData>(context).pickUpLocation.placeName:
                                     "Add Home"
                               ),
                               SizedBox(height: 4.0,),
@@ -409,14 +409,15 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                                     style: TextStyle(fontSize: 18.0, fontFamily: 'Brand-Bold'),
                                   ),
                                   Text(
-                                    ((tripDirectionDetails != null) ? tripDirectionDetails.distanceText : ''),
+                                    ((tripDirectionDetails != null) ? tripDirectionDetails!.distanceText : ''),
                                     style: TextStyle(fontSize: 16.0, color: Colors.grey),
                                   ),
                                 ],
                               ),
                               Expanded(child: Container(),),
                               Text(
-                                ((tripDirectionDetails != null) ? '\₹${AssistantMethods.calculateFares(tripDirectionDetails)}' : ''),
+                                "fair",
+                                // ((tripDirectionDetails != null) ? '\₹${AssistantMethods.calculateFares(tripDirectionDetails)}' : ''),
                                 style: TextStyle(fontFamily: 'Brand Bold'),
                               ),
                             ],
@@ -515,7 +516,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                           Colors.red,
                         ],
                         textAlign: TextAlign.center,
-                        alignment: AlignmentDirectional.topStart,
+                        // alignment: AlignmentDirectional.topStart,
                       ) ,
                     ),
 
@@ -531,7 +532,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(26.0),
-                          border: Border.all(width: 2.0, color: Colors.grey[300]),
+                          border: Border.all(width: 2.0, color: Colors.grey),
                         ),
                         child: Icon(Icons.close, size: 26.0,),
                       ),
@@ -557,8 +558,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     var initialPos = Provider.of<AppData>(context, listen: false).pickUpLocation;
     var finalPos = Provider.of<AppData>(context, listen: false).dropOffLocation;
 
-    var pickUpLatLng = LatLng(initialPos.latitude, initialPos.longitude);
-    var dropOffLatLng = LatLng(finalPos.latitude, finalPos.longitude);
+    var pickUpLatLng = LatLng(initialPos!.latitude, initialPos!.longitude);
+    var dropOffLatLng = LatLng(finalPos!.latitude, finalPos!.longitude);
 
     showDialog(
       context: context,
@@ -608,7 +609,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     }else{
       latLngBounds = LatLngBounds(southwest: pickUpLatLng, northeast: dropOffLatLng);
     }
-    newGoogleMapController.animateCamera(CameraUpdate.newLatLngBounds(latLngBounds, 70));
+    newGoogleMapController!.animateCamera(CameraUpdate.newLatLngBounds(latLngBounds, 70));
 
     Marker pickUpLocationMarker = Marker(
       icon:  BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),

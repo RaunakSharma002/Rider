@@ -4,6 +4,6 @@ import 'Models/allUsers.dart';
 
 String mapKey = 'AIzaSyDw8j4k54M40hZr7cpRCJ1VsW_tDxZCMRE';
 
-User firebaseUser;
+User? firebaseUser;
 
-Users userCurrentInfo;
+// Users userCurrentInfo;
