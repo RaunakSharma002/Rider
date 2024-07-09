@@ -17,19 +17,19 @@ Taxi App is a mobile application developed using Flutter and Firebase that allow
 <table>
   <tr>
     <td style="text-align: center;">
-      <img src="https://github.com/yourusername/yourrepositoryname/blob/main/screenshots/login_page.jpg" alt="Login Page" width="200"/>
+      <img src="https://github.com/RaunakSharma002/Rider/blob/main/images/login.jpg" alt="Login Page" width="200"/>
       <p>Login Page</p>
     </td>
     <td style="text-align: center;">
-      <img src="https://github.com/yourusername/yourrepositoryname/blob/main/screenshots/profile_page.jpg" alt="Profile Page" width="200"/>
+      <img src="https://github.com/RaunakSharma002/Rider/blob/main/images/profile.jpg" alt="Profile Page" width="200"/>
       <p>Profile Page</p>
     </td>
     <td style="text-align: center;">
-      <img src="https://github.com/yourusername/yourrepositoryname/blob/main/screenshots/home_page.jpg" alt="Home Page" width="200"/>
+      <img src="https://github.com/RaunakSharma002/Rider/blob/main/images/home.jpg" alt="Home Page" width="200"/>
       <p>Home Page</p>
     </td>
     <td style="text-align: center;">
-      <img src="https://github.com/yourusername/yourrepositoryname/blob/main/screenshots/search_page.jpg" alt="Search Page" width="200"/>
+      <img src="https://github.com/RaunakSharma002/Rider/blob/main/images/search.jpg" alt="Search Page" width="200"/>
       <p>Search Page</p>
     </td>
   </tr>
@@ -41,7 +41,7 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/taxi_app.git
+    git clone https://github.com/yRaunakSharma002/Rider.git
     cd taxi_app
     ```
 
@@ -79,7 +79,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-If you have any questions or feedback, feel free to reach out to me at your_email@example.com.
+If you have any questions or feedback, feel free to reach out to me at raunaksharma22345@gmail.com.
 
 ---
 
